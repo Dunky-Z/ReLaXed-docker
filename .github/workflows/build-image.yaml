@@ -20,7 +20,7 @@ on:
         type: string
         required: false
         description: "The OS used to build the docker image."
-        default: "ubuntu-latest"
+        default: "ubuntu-2204"
 
 env:
   REGISTRY: ghcr.io
