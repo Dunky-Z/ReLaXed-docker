@@ -5,18 +5,12 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_a
 RUN chmod +x /usr/local/bin/dumb-init
 
 RUN git clone https://github.com/RelaxedJS/ReLaXed.git
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.bk && sudo bash -c "cat << EOF > /etc/apt/sources.list \
-    deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse \
-    deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse \
-    deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse \
-    deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restrcdicted universe multiverse \
-    deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse \
-    deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse \
-    deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse \
-    deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse \
-    deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse \
-    deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse \
-    EOF"
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
+    && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy  main restricted universe multiverse" > /etc/apt/sources.list \
+    && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list \
+    && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list \
+    && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse" >> /etc/apt/sources.list \
+    && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4 \
 ca-certificates \
