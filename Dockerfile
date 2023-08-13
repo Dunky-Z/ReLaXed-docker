@@ -12,6 +12,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse" >> /etc/apt/sources.list \
     && echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list
 # See https://crbug.com/795759
+RUN rm -rf /var/cache/apt/archives/*
 RUN apt-get update && apt-get install -yq  --allow-unauthenticated apt-utils zstd libgconf-2-4 \
 ca-certificates \
 fonts-liberation \
